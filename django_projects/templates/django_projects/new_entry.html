@@ -1,0 +1,17 @@
+{% extends "django_projects/base.html" %}
+
+{% block content %}
+
+<div class="entry-container">
+    <p><a href="{% url 'topic' topic.id %}">{{ topic }}</a></p>
+
+    <p>Adicione uma nova entrada:</p>
+
+    <form action="{% url 'new_entry' topic.id %}" method="post" class="entry-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Adicionar</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "django_projects/base.html" %}
+
+{% block content %}
+
+    <div class="topic-container">
+        <h3 class="topic-title">Tópico: {{topic}}</h3>
+        
+        <ul class="entry-list">
+            {% for entry in entries %}
+            <li>
+                <p class="entry-date">{{entry.date_added | date:'M d, Y H:i'}}</p>
+                <p class="entry-text">{{entry.text | linebreaks}}</p>
+                <p class="entry-actions">
+                    <a href="{% url 'edit_entry' entry.id %}">Editar</a>
+                </p>
+            </li>
+            {% empty %}
+            <li>Não há registros</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{%url 'new_entry' topic.id %}" class="add-entry">Adicionar nova Entrada</a>
+    </div>
+    
+{% endblock content %}

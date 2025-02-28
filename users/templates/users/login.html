@@ -1,0 +1,15 @@
+{% extends "django_projects/base.html" %}
+
+{% block content %}
+
+<div class="login-container">
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Entrar</button>
+        <input type="hidden" name="next" value="{% url 'index' %}">
+    </form>
+    <a href="{% url 'register' %}">Cadastrar-se</a>
+</div>
+
+{% endblock content %}
